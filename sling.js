@@ -7,10 +7,10 @@ class Sling {
             angularStiffness: 1,
             lenght: 220
         };
-        this.pointB = this.pointB;
+        this.sling = Constraint.create(options);
+        this.pointB = pointB;
         this.pointX = bodyA.x;
         this.pointY = bodyA.y - 250;
-        this.sling = Constraint.create(options);
         World.add(world, this.sling);
     }
 
@@ -20,7 +20,7 @@ class Sling {
           var pointB = this.pointB;
           push();
           strokeWeight(3,5);
-          stroke("#fff");
+          stroke("black");
           line(pointB.x, pointB.y, pointA.x, pointA.y);
           pop();
         }
