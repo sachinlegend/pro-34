@@ -1,43 +1,66 @@
 const Engine = Matter.Engine;
-const World = Matter.World;
-const Bodies = Matter.Bodies;
-const Body = Matter.Body;
-const Constraint = Matter.Constraint;
+ const World = Matter.World;
+ const Bodies = Matter.Bodies;
+ const Body = Matter.Body;
+ const Constraint = Matter.Constraint;
 
-var bob1, bob2, bob3, bob4, bob5;
-var sling1, sling2, sling3, sling4, sling5;
+ var engine, world;
 
-function setup() {
-	canvas = createCanvas(1000,800);
-  	engine = Engine.create();
-	world = engine.world;
+ var bob1,bob2,bob3,bob4,bob5;
+ var rope1,rope2,rope3,rope4,rope5;
 
-	bob1 = new Pendulum(500,600)
-	bob2 = new Pendulum(440,600);
-	bob3 = new Pendulum(380,600)
-	bob4 = new Pendulum(560,600);
-	bob5 = new Pendulum(620,600);
-	sling1 = new Sling(bob1.body,{x:500,y:400});
+ function preload(){
 
-	Engine.run(engine);
+ }
+
+ function setup(){
+     createCanvas(800,700);
+
   
-}
+    engine = Engine.create();
 
+    
+    world = engine.world;
 
-function draw() {
-  rectMode(CENTER);
-  background("yellow");
-  
-  drawSprites();
+   
+    Engine.run(engine);
 
-  bob1.display();
-  bob2.display(); 
-  bob3.display();
-  bob4.display();
-  bob5.display();
-  sling1.display();
-}
+   
+   
+   
+    bob1 = new Pendulum(300,300);
+    bob2 = new Pendulum(350,300);
+    bob3 = new Pendulum(400,300);
+    bob4 = new Pendulum(450,300);
+    bob5 = new Pendulum(500,300);
 
+   
+    rope1 = new Sling(bob1.body,300,150);    
+    rope2 = new Sling(bob2.body,350,150);      
+    rope3 = new Sling(bob3.body,400,150);       
+    rope4 = new Sling(bob4.body,450,150);
+    rope5 = new Sling(bob5.body,500,150);
+    
+ }
 
+ function draw(){
+     background("yellow");
 
+     bob1.display();
+     bob2.display();
+     bob3.display();
+     bob4.display();
+     bob5.display();
 
+     rope1.display();
+     rope2.display();
+     rope3.display();
+     rope4.display();
+     rope5.display();
+ }
+
+ function keyPressed(){
+     if(keyCode === UP_ARROW){
+         Matter.Body.applyForce(bob1.body,bob1.body.position,{x:-50,y:-50})
+     }
+ }
