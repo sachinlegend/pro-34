@@ -1,28 +1,20 @@
 class Sling {
-    contructor(bodyA,pointB){
-        var options = {
-            bodyA: bodyA,
-            pointB: pointB,
-            stiffness: 1,
-            angularStiffness: 1,
-            lenght: 220
-        };
-        this.sling = Constraint.create(options);
-        this.pointB = pointB;
-        this.pointX = bodyA.x;
-        this.pointY = bodyA.y - 250;
-        World.add(world, this.sling);
-    }
-
-    display() {
-        if(this.sling.bodyA) {
-          var pointA = this.sling.bodyA.position;
-          var pointB = this.pointB;
-          push();
-          strokeWeight(3,5);
-          stroke("black");
-          line(pointB.x, pointB.y, pointA.x, pointA.y);
-          pop();
-        }
-    }
-}
+    constructor(bodyA,xOffset,yOffset){
+      var options ={
+          bodyA:bodyA,
+          pointB:{x:xOffset,y:yOffset}     
+      }
+  
+      this.rope=Constraint.create(options);
+      this.xOffset = xOffset;
+      this.yOffset = yOffset;
+      World.add(world,this.rope);
+  }
+  
+  display(){
+      var pointA = this.rope.bodyA.position;    
+      stroke("black");
+      strokeWeight(3);
+      line(pointA.x,pointA.y,this.xOffset,this.yOffset)
+  }
+  }
